@@ -29,12 +29,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Admin</a>
+                <a class="navbar-brand" th:href="@{/}">Admin</a>
             </div>
             <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"><a th:href="@{/}" class="btn btn-danger square-btn-adjust">Logout</a>
+font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjust">Logout</a>
             </div>
         </nav>
         <!-- /. NAV TOP  -->
@@ -191,13 +191,13 @@ font-size: 16px;"><a th:href="@{/}" class="btn btn-danger square-btn-adjust">Log
     <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
     <!-- BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
     <!-- METISMENU SCRIPTS -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script th:src="@{/js/jquery.metisMenu.js}"></script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
+    <script th:src="@{/js/custom.js}"></script>
 
 
 </body>

@@ -29,12 +29,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home.html">Admin</a>
+                <a class="navbar-brand" th:href="@{/}">Admin</a>
             </div>
             <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a>
+font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjust">Logout</a>
             </div>
         </nav>
         <!-- /. NAV TOP  -->
@@ -42,12 +42,12 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li class="text-center">
-                        <img src="assets/img/find_user.png" class="user-image img-responsive" />
+                        <img th:src="@{/img/find_user.png}" class="user-image img-responsive" />
                     </li>
 
 
                     <li>
-                        <a href="home.html"><i class="fa fa-dashboard fa-2x"></i> Dashboard</a>
+                        <a th:href="@{/}"><i class="fa fa-dashboard fa-2x"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="reports.html"><i class="fa fa-bar-chart-o fa-2x"></i>Reports</a>
@@ -63,10 +63,10 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                                 class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="active-menu" href="productsList.html"><i class="fa fa-table fa-2x"></i>Products List</a>
+                                <a class="active-menu" th:href="@{/product/productsList}"><i class="fa fa-table fa-2x"></i>Products List</a>
                             </li>
                             <li>
-                                <a href="addProduct.html"><i class="fa fa-edit fa-2x"></i> Add Product </a>
+                                <a th:href="@{/product/addProduct}"><i class="fa fa-edit fa-2x"></i> Add Product </a>
                             </li>
                         </ul>
                     </li>
@@ -106,22 +106,27 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                                                 <th>Platform(s)</th>
                                                 <th>Engine version</th>
                                                 <th>CSS grade</th>
+                                                <th>CSS grade</th>
+                                                <th>CSS grade</th>
+                                                <th>CSS grade</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="gradeC">
-                                                <td>Misc</td>
-                                                <td>PSP browser</td>
-                                                <td>PSP</td>
-                                                <td class="center">-</td>
-                                                <td class="center">C</td>
-                                            </tr>
-                                            <tr class="gradeU">
-                                                <td>Other browsers</td>
-                                                <td>All others</td>
-                                                <td>-</td>
-                                                <td class="center">-</td>
-                                                <td class="center">U</td>
+                                            <tr class="gradeC" data-th-each="book : ${bookList}">
+                                                <td>
+                                                    <input hidden="hidden" name="id" th:value="${book.id}" />
+                                                    <input th:id="'selected'+${book.id}" class="checkboxBook" type="checkbox" />
+                                                </td>
+                                                <td th:href="@{/book/bookInfo(id=${book.id})}"><span th:text="${book.title}"></span></td>
+                                                <td th:text="${book.category}"></td>
+                                                <td th:text="${book.listPrice}"></td>
+                                                <td th:text="${book.ourPrice}"></td>
+                                                <td th:text="${book.active}"></td>
+                                                <td>
+                                                    <input hidden="hidden" name="id" th:value="${book.id}" />
+                                                    <button th:id="'oneBook-'+${book.id}" class="btn btn-danger btn-xs delete-book" type="submit" value="delete" >
+                                                        <span class="fa fa-times"></span>Delete</button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -143,21 +148,21 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
     <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
     <!-- BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
     <!-- METISMENU SCRIPTS -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script th:src="@{/js/jquery.metisMenu.js}"></script>
     <!-- DATA TABLE SCRIPTS -->
-    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script th:src="@{/js/dataTables/jquery.dataTables.js}"></script>
+    <script th:src="@{/js/dataTables/dataTables.bootstrap.js}"></script>
     <script>
         $(document).ready(function () {
             $('#dataTables-example').dataTable();
         });
     </script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
+    <script th:src="@{/js/custom.js}"></script>
 
 
 </body>

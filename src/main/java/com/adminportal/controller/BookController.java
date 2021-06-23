@@ -27,14 +27,14 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
     public String addProduct(Model model){
         Book book = new Book();
         model.addAttribute("book", book);
         return "addProduct";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String addProductPost(@ModelAttribute("book") Book book,
                               HttpServletRequest request){
         bookService.save(book);
@@ -90,7 +90,7 @@ public class BookController {
         return "redirect:/product/productDetails?id=" + book.getId();
     }
 
-    @RequestMapping("/productList")
+    @RequestMapping("/productsList")
     public String products(Model model){
         List<Book> bookList = bookService.findAll();
         model.addAttribute("bookList", bookList);
