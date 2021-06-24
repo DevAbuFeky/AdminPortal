@@ -81,8 +81,6 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Table Examples</h2>
-                        <h5>Welcome Jhon Deo , Love to see you back. </h5>
-
                     </div>
                 </div>
                 <!-- /. ROW  -->
@@ -101,23 +99,23 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                         id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
-                                                <th>CSS grade</th>
-                                                <th>CSS grade</th>
-                                                <th>CSS grade</th>
+                                                <th><input th:id="selectAllBooks" type="checkbox" /></th>
+                                                <th>Tittle</th>
+                                                <th>Category</th>
+                                                <th>List Price</th>
+                                                <th>Our Price</th>
+                                                <th>Active</th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="gradeC" data-th-each="book : ${bookList}">
+                                            <tr data-th-each="book : ${bookList}">
                                                 <td>
                                                     <input hidden="hidden" name="id" th:value="${book.id}" />
                                                     <input th:id="'selected'+${book.id}" class="checkboxBook" type="checkbox" />
                                                 </td>
-                                                <td th:href="@{/book/bookInfo(id=${book.id})}"><span th:text="${book.title}"></span></td>
+                                                <td th:text="${book.title}"></td>
                                                 <td th:text="${book.category}"></td>
                                                 <td th:text="${book.listPrice}"></td>
                                                 <td th:text="${book.ourPrice}"></td>
@@ -127,11 +125,12 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                                     <button th:id="'oneBook-'+${book.id}" class="btn btn-danger btn-xs delete-book" type="submit" value="delete" >
                                                         <span class="fa fa-times"></span>Delete</button>
                                                 </td>
+                                                <td><a th:href="@{/product/productDetails?id=}+${book.id}" class="fa fa-info-circle fa-2x"></a></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-
+                                <button th:id="deleteSelected" class="btn btn-danger">Delete Selected</button>
                             </div>
                         </div>
                         <!--End Advanced Tables -->
@@ -143,7 +142,6 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
 
     </div>
     <!-- /. PAGE INNER  -->
-    </div>
     <!-- /. PAGE WRAPPER  -->
     <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
@@ -153,6 +151,7 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <!-- METISMENU SCRIPTS -->
     <script th:src="@{/js/jquery.metisMenu.js}"></script>
+    <script th:src="@{/js/scripts.js}"></script>
     <!-- DATA TABLE SCRIPTS -->
     <script th:src="@{/js/dataTables/jquery.dataTables.js}"></script>
     <script th:src="@{/js/dataTables/dataTables.bootstrap.js}"></script>

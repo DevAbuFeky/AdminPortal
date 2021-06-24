@@ -64,7 +64,7 @@ public class BookController {
     public String updateProduct(Model model,@RequestParam("id") Long id){
         Optional<Book> book = bookService.findOne(id);
         model.addAttribute("book", book);
-        return "updateProducts";
+        return "updateProduct";
     }
 
     @RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
