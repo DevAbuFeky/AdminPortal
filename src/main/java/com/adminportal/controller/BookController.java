@@ -2,6 +2,7 @@ package com.adminportal.controller;
 
 import com.adminportal.domain.Book;
 import com.adminportal.service.BookService;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
@@ -42,8 +44,11 @@ public class BookController {
 
         try{
             byte[] bytes = bookImage.getBytes();
+            //create path
             String name = book.getId() + ".png";
-            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resource/static/image/book" + name)));
+            Path path = Paths.get("src/main/resources/static/image/book/").toAbsolutePath().normalize();
+            Files.createDirectories(path);
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(path.toString() + name));
             stream.write(bytes);
             stream.close();
         }catch (Exception e){
@@ -53,18 +58,33 @@ public class BookController {
     }
 
     @RequestMapping("/productDetails")
-    public String productDetails(@RequestParam("id") Long id, Model model){
+    public String productDetails(@RequestParam("id") Long id, Model model) throws NotFoundException {
         Optional<Book> book = bookService.findOne(id);
-        model.addAttribute("book", book);
+        if(book.isPresent()) {
+            System.out.println(book.get().getId());
+            model.addAttribute("book", book.get());
 
-        return "productDetails";
+            return "productDetails";
+        } else {
+            throw new NotFoundException("book not found");
+        }
+//        model.addAttribute("book", book.get());
+//
+//        return "productDetails";
     }
 
     @RequestMapping("/updateProduct")
-    public String updateProduct(Model model,@RequestParam("id") Long id){
+    public String updateProduct(Model model,@RequestParam("id") Long id) throws NotFoundException {
         Optional<Book> book = bookService.findOne(id);
-        model.addAttribute("book", book);
-        return "updateProduct";
+        if(book.isPresent()) {
+            System.out.println(book.get().getId());
+            model.addAttribute("book", book.get());
+            return "updateProduct";
+        } else {
+            throw new NotFoundException("Product not found");
+        }
+//        model.addAttribute("book", book.get());
+//        return "updateProduct";
     }
 
     @RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
@@ -78,9 +98,13 @@ public class BookController {
                 byte[] bytes = bookImage.getBytes();
                 String name = book.getId() + ".png";
 
-                Files.delete(Paths.get("src/main/resource/static/image/book" + name));
+                Files.delete(Paths.get("src/main/resources/static/image/book/" + name));
 
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resource/static/image/book" + name)));
+//                Path path = Paths.get("src/main/resources/static/image/book/").toAbsolutePath().normalize();
+//                Files.createDirectories(path);
+//                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(path.toString() + name));
+
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/image/book" + name)));
                 stream.write(bytes);
                 stream.close();
             }catch (Exception e) {

@@ -1,15 +1,14 @@
 /**
  * 
  */
-
 $(document).ready(function() {
 	$('.delete-book').on('click', function (){
 		/*<![CDATA[*/
-	    var path = /*[[@{/}]]*/'remove';
+	    let path = /*[[@{/}]]*/'remove';
 	    /*]]>*/
-		
-		var id=$(this).attr('id');
-		
+
+		let id=$(this).attr('id');
+
 		bootbox.confirm({
 			message: "Are you sure to remove this book? It can't be undone.",
 			buttons: {
@@ -43,9 +42,9 @@ $(document).ready(function() {
 //    })
 	
 	$('#deleteSelected').click(function() {
-		var idList= $('.checkboxBook');
-		var bookIdList=[];
-		for (var i = 0; i < idList.length; i++) {
+		let idList= $('.checkboxBook');
+		let bookIdList=[];
+		for (let i = 0; i < idList.length; i++) {
 			if(idList[i].checked===true) {
 				bookIdList.push(idList[i]['id'])
 			}
@@ -54,10 +53,10 @@ $(document).ready(function() {
 		console.log(bookIdList);
 		
 		/*<![CDATA[*/
-	    var path = /*[[@{/}]]*/'removeList';
+		let path = /*[[@{/}]]*/'removeList';
 	    /*]]>*/
-	    
-	    bootbox.confirm({
+
+		bootbox.confirm({
 			message: "Are you sure to remove all selected books? It can't be undone.",
 			buttons: {
 				cancel: {

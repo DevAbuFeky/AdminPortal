@@ -1,6 +1,7 @@
 package com.adminportal.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,11 +12,13 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 //@Data
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
     private String title;
     private String author;

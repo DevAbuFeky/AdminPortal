@@ -17,6 +17,8 @@
     <link th:href="@{/css/custom.css}" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <script src="https://cdn.tiny.cloud/1/ahftfxfwv5zd87u0l2vgbzaf500wblxdodgqy69udy4i2z05/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 <body>
@@ -50,13 +52,13 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                         <a th:href="@{/}"><i class="fa fa-dashboard fa-2x"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="reports.html"><i class="fa fa-bar-chart-o fa-2x"></i>Reports</a>
+                        <a><i class="fa fa-bar-chart-o fa-2x"></i>Reports</a>
                     </li>
                     <li>
-                        <a href="users.html"><i class="fa fa-table fa-2x"></i>Users</a>
+                        <a><i class="fa fa-table fa-2x"></i>Users</a>
                     </li>
                     <li>
-                        <a href="orderHistory.html"><i class="fa fa-table fa-2x"></i>Order History</a>
+                        <a><i class="fa fa-table fa-2x"></i>Order History</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-2x"></i> Inventory<span
@@ -121,11 +123,11 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                                 <td th:text="${book.ourPrice}"></td>
                                                 <td th:text="${book.active}"></td>
                                                 <td>
-                                                    <input hidden="hidden" name="id" th:value="${book.id}" />
+                                                    <input hidden="hidden" name="id" th:value="${book.id}"/>
                                                     <button th:id="'oneBook-'+${book.id}" class="btn btn-danger btn-xs delete-book" type="submit" value="delete" >
                                                         <span class="fa fa-times"></span>Delete</button>
                                                 </td>
-                                                <td><a th:href="@{/product/productDetails?id=}+${book.id}" class="fa fa-info-circle fa-2x"></a></td>
+                                                <td><a th:href="@{/product/productDetails(id=${book.id})}" class="fa fa-info-circle fa-2x"></a></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -142,14 +144,17 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
 
     </div>
     <!-- /. PAGE INNER  -->
-    <!-- /. PAGE WRAPPER  -->
-    <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+
+    <!-- SCRIPTS -AT THE BOTTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script th:src="@{/js/jquery-1.10.2.js}"></script>
+<!--    <script th:src="@{/js/dataTables.jqueryui.js}"></script>-->
+<!--    <script th:src="@{/js/dataTables.uikit.js}"></script>-->
+<!--    <script th:src="@{/js/jquery.dataTables.min.js}"></script>-->
+<!--    <script th:src="@{/js/jquery.min.js}"></script>-->
     <!-- BOOTSTRAP SCRIPTS -->
     <script th:src="@{/js/bootstrap.min.js}"></script>
-    <!-- METISMENU SCRIPTS -->
+    <!-- MEANTIME SCRIPTS -->
     <script th:src="@{/js/jquery.metisMenu.js}"></script>
     <script th:src="@{/js/scripts.js}"></script>
     <!-- DATA TABLE SCRIPTS -->
@@ -162,6 +167,17 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
     </script>
     <!-- CUSTOM SCRIPTS -->
     <script th:src="@{/js/custom.js}"></script>
+
+    <!-- Production version -->
+<!--    <script src="https://unpkg.com/@popperjs/core@2"></script>-->
+    <!-- Development version -->
+<!--    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!--bootbox-->
+    <script th:src="@{/js/bootbox/bootbox.all.js}"></script>
+    <script th:src="@{/js/bootbox/bootbox.js}"></script>
+    <script th:src="@{/js/bootbox/bootbox.local.js}"></script>
 
 
 </body>

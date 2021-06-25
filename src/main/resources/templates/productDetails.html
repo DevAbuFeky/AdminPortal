@@ -53,13 +53,13 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                         <a th:href="@{/}"><i class="fa fa-dashboard fa-2x"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="reports.html"><i class="fa fa-bar-chart-o fa-2x"></i>Reports</a>
+                        <a><i class="fa fa-bar-chart-o fa-2x"></i>Reports</a>
                     </li>
                     <li>
-                        <a href="users.html"><i class="fa fa-table fa-2x"></i>Users</a>
+                        <a><i class="fa fa-table fa-2x"></i>Users</a>
                     </li>
                     <li>
-                        <a href="orderHistory.html"><i class="fa fa-table fa-2x"></i>Order History</a>
+                        <a><i class="fa fa-table fa-2x"></i>Order History</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-2x"></i> Inventory<span
@@ -83,8 +83,8 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
             <div id="page-inner">
                 <div>
                     <ol class="breadcrumb">
-                        <li> <a th:href="@{/book/bookList}"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
-                        <li> <a th:href="@{/book/updateBook?id=}+${book.id}" class="fa fa-edit fa-2x"></a></li>
+                        <li> <a th:href="@{/product/productsList}"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
+                        <li> <a th:href="@{/product/updateProduct?id=}+${book.id}" class="fa fa-edit fa-2x"></a></li>
                     </ol>
                 </div>
                 <div class="row">
@@ -106,7 +106,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                                 <div class="preview col-md-6">
 
                                     <div class="preview-pic tab-content">
-                                        <div><img th:src="@{/image/book/}+${book.id}+'.png'" />
+                                        <div><img th:src="@{src/main/resources/static/image/}+${book.id}+'.png'"/>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +132,6 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
 
     </div>
     <!-- /. PAGE INNER  -->
-    </div>
     <!-- /. PAGE WRAPPER  -->
     <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
