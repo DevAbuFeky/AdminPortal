@@ -19,7 +19,7 @@ public class BookServiceImpl implements BookService {
     }
 
     public List<Book> findAll(){
-        return (List<Book>) bookRepository.findAll();
+        return bookRepository.findAll();
     }
 
     public Optional<Book> findOne(Long id){

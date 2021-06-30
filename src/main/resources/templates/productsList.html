@@ -16,7 +16,7 @@
     <!-- CUSTOM STYLES-->
     <link th:href="@{/css/custom.css}" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
     <script src="https://cdn.tiny.cloud/1/ahftfxfwv5zd87u0l2vgbzaf500wblxdodgqy69udy4i2z05/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
@@ -111,7 +111,8 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                         id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th><input th:id="selectAllBooks" type="checkbox" /></th>
+<!--                                                <input th:id="selectAllBooks" type="checkbox" />-->
+                                                <th>#</th>
                                                 <th>Tittle</th>
                                                 <th>Category</th>
                                                 <th>List Price</th>
@@ -123,9 +124,9 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                         </thead>
                                         <tbody>
                                             <tr data-th-each="book : ${bookList}">
-                                                <td>
-                                                    <input hidden="hidden" name="id" th:value="${book.id}" />
-                                                    <input th:id="'selected'+${book.id}" class="checkboxBook" type="checkbox" />
+                                                <td name="id" th:text="${book.id}">
+<!--                                                    <input hidden="hidden" name="id" th:value="${book.id}" />-->
+<!--                                                    <input th:id="'selected'+${book.id}" class="checkboxBook" type="checkbox" />-->
                                                 </td>
                                                 <td th:text="${book.tittle}"></td>
                                                 <td th:text="${book.category.name}"></td>
@@ -142,7 +143,7 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                         </tbody>
                                     </table>
                                 </div>
-                                <button th:id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+<!--                                <button th:id="deleteSelected" class="btn btn-danger">Delete Selected</button>-->
                             </div>
                         </div>
                         <!--End Advanced Tables -->

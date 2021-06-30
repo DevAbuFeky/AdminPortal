@@ -28,6 +28,33 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	$('.delete-category').on('click', function (){
+		/*<![CDATA[*/
+		let path = /*[[@{/}]]*/'remove';
+		/*]]>*/
+
+		let id=$(this).attr('id');
+
+		bootbox.confirm({
+			message: "Are you sure to remove this category ? It can't be undone.",
+			buttons: {
+				cancel: {
+					label:'<i class="fa fa-times"></i> Cancel'
+				},
+				confirm: {
+					label:'<i class="fa fa-check"></i> Confirm'
+				}
+			},
+			callback: function(confirmed) {
+				if(confirmed) {
+					$.post(path, {'id':id}, function(res) {
+						location.reload();
+					});
+				}
+			}
+		});
+	});
 	
 	
 	
