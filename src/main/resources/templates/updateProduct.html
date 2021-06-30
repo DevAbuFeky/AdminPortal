@@ -44,7 +44,7 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li class="text-center">
-                        <img src="assets/img/find_user.png" class="user-image img-responsive" />
+                        <img th:src="@{/img/find_user.png}" class="user-image img-responsive" />
                     </li>
 
 
@@ -69,6 +69,18 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                             </li>
                             <li>
                                 <a th:href="@{/product/addProduct}"><i class="fa fa-edit fa-2x"></i> Add Product </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-file fa-2x"></i> Categories<span
+                                class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a th:href="@{/categories/categoriesList}"><i class="fa fa-table fa-2x"></i>Categories List</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/categories/new}"><i class="fa fa-edit fa-2x"></i> Add Category </a>
                             </li>
                         </ul>
                     </li>
@@ -98,48 +110,47 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h3>Basic Form Examples</h3>
-                                        <form role="form"  style="width: 75%;" th:action="@{/product/updateProduct}" method="post"
+                                        <form role="form"  style="width: 75%;" th:action="@{/product/updateProduct}" th:object="${book}" method="post"
                                               enctype="multipart/form-data">
-                                            <input hidden="hidden" name="id" th:value="${book.id}" />
+                                            <input hidden="hidden" name="id" th:value="${book.id}" th:field="*{id}"/>
                                             <div class="form-group">
-                                                <label>Title</label>
-                                                <input type="text" name="title" class="form-control" id="title"
-                                                       th:value="${book.title}" required="required" placeholder="Please enter product name" />
+                                                <label>Tittle</label>
+                                                <input class="form-control" placeholder="Please enter product name" th:field="*{tittle}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>Publisher</label>
-                                                <input type="text" name="publisher" class="form-control"
-                                                       id="publisher" th:value="${book.publisher}" placeholder="Please enter Publisher name" />
+                                                <input class="form-control" placeholder="Please enter Publisher name" th:field="*{publisher}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>Publication Date</label>
                                                 <input type="date" class="form-control" id="publicationDate"
-                                                       name="publicationDate" th:value="${book.publicationDate}" style="width: 25%;"/>
+                                                       name="publicationDate" th:value="${book.publicationDate}"
+                                                       placeholder="publication Date" style="width: 25%;"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>Shipping Weight</label>
-                                                <input th:value="${book.shippingWeight}" type="number" step="0.01"
-                                                       name="shippingWeight" class="form-control" id="shippingWeight" placeholder="Please enter product weight" />
+                                                <input th:field="*{shippingWeight}" type="number" step="0.01"
+                                                       class="form-control" placeholder="Shipping Weight"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>List Price</label>
-                                                <input th:value="${book.listPrice}" type="number" name="listPrice" step="0.01"
-                                                       class="form-control" id="listPrice" placeholder="Please enter list price" />
+                                                <input th:field="*{listPrice}" type="number" step="0.01"
+                                                       class="form-control" placeholder="Please enter list price" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Our Price</label>
-                                                <input th:value="${book.ourPrice}" type="number" name="ourPrice" step="0.01"
-                                                       class="form-control" id="ourPrice" placeholder="Please enter our price" />
+                                                <input th:field="*{ourPrice}" type="number" step="0.01"
+                                                       class="form-control" placeholder="Please enter our price" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Number in Stock</label>
-                                                <input th:value="${book.inStockNumber}" type="number"
-                                                       name="inStockNumber" class="form-control" id="inStockNumber" placeholder="Please enter number in stock" />
+                                                <input th:field="*{inStockNumber}" type="number"
+                                                       class="form-control" placeholder="Please enter number in stock" />
                                             </div>
                                             <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea name="description" class="form-control"
-                                                          id="description" th:value="${book.description}" th:text="${book.description}" rows="3" placeholder="Discripe your product"></textarea>
+                                                <label>Discription</label>
+                                                <textarea rows="5" class="form-control" th:field="*{description}"
+                                                          placeholder="Description"></textarea>
                                             </div>
                                             <!-- <div class="form-group">
                                                 <label>Inline Checkboxes Examples</label>
@@ -158,40 +169,34 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                                 <div class="radio">
                                                     <label>
                                                         <input value="true" type="radio" name="active"
-                                                               th:checked="${book.active}"/>Active
+                                                               checked="checked" />Active
                                                     </label>
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input value="false" type="radio" name="active" th:checked="${!book.active}"/>DisActive
+                                                        <input value="false" type="radio" name="active" />DisActive
                                                     </label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Select Category</label>
-                                                <select th:value="${book.category}" id="category" name="category"
-                                                        class="form-control">
-                                                    <option value="" selected="selected" disabled="disabled">Please
-                                                        select an option...</option>
-                                                    <option value="Management"
-                                                            th:selected="(${book.category}=='Management')">Management</option>
-                                                    <option value="Fiction"
-                                                            th:selected="(${book.category}=='Fiction')">Fiction</option>
-                                                    <option value="Engineering"
-                                                            th:selected="(${book.category}=='Engineering')">Engineering</option>
-                                                    <option value="Programming"
-                                                            th:selected="(${book.category}=='Programming')">Programming</option>
-                                                    <option value="Arts &amp; Literature"
-                                                            th:selected="(${book.category}=='Arts &amp; Literature')">Arts
-                                                        &amp; Literature</option>
-                                                </select>
-                                                <br/>
-                                                <label>Add Image</label>
-                                                    <input type="file" />
+
+                                                <div class="form-group">
+                                                    <label>Category</label>
+                                                    <select th:field="*{category}" th:value="${book.category}" class="form-control" required>
+                                                        <option value="" selected="selected">Please
+                                                            select an option...</option>
+                                                        <th:block th:each="cat : ${listCategories}">
+                                                            <option th:text="${cat.name}" th:value="${cat.id}"></option>
+                                                        </th:block>
+                                                    </select>
+                                                    <br/>
+                                                    <label>Add Image</label>
+                                                    <input type="file" name="bookImage" id="bookImage" accept="image/png, image/jpeg" required/>
+                                                </div>
                                             </div>
-                                            <button type="submit" class="btn btn-default">Save Changes</button>
-                                            <button class="btn btn-danger" th:href="@{/product/productsList(id=${book.id})}">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Update Product</button>
+<!--                                            <button class="btn btn-danger" th:href="@{/}">Cancel</button>-->
                                         </form>
                                         <br />
                                     </div>

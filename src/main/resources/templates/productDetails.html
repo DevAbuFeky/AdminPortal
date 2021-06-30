@@ -37,7 +37,7 @@
             <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a>
+font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjust">Logout</a>
             </div>
         </nav>
         <!-- /. NAV TOP  -->
@@ -70,6 +70,18 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                             </li>
                             <li>
                                 <a th:href="@{/product/addProduct}"><i class="fa fa-edit fa-2x"></i> Add Product </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-file fa-2x"></i> Categories<span
+                                class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a th:href="@{/categories/categoriesList}"><i class="fa fa-table fa-2x"></i>Categories List</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/categories/new}"><i class="fa fa-edit fa-2x"></i> Add Category </a>
                             </li>
                         </ul>
                     </li>
@@ -106,14 +118,19 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                                 <div class="preview col-md-6">
 
                                     <div class="preview-pic tab-content">
-                                        <div><img th:src="@{src/main/resources/static/image/}+${book.id}+'.png'"/>
+                                        <div>
+<!--                                            <img th:src="@{/img/find_user.png}"/>-->
+                                            <span th:if="${book.logo == null}"
+                                                  class="fas fa-portrait fa-3x icon-silver"></span> <img
+                                                th:if="${book.logo != null}"
+                                                th:src="@{${book.LogoImagePath}}"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="details col-md-6">
-                                    <h3 class="product-title" th:text="${book.title}"></h3>
+                                    <h3 class="product-title" th:text="${book.tittle}"></h3>
                                     <p><strong>Publisher: </strong><span th:text="${book.publisher}"></span></p>
-                                    <p><strong>Category: </strong><span th:text="${book.category}"></span></p>
+                                    <p><strong>Category: </strong><span th:text="${book.category.name}"></span></p>
                                     <p><strong>Publication Date: </strong><span th:text="${book.publicationDate}"></span></p>
                                     <p class="product-description"><Strong>Description: </Strong><span th:text="${book.description}"></span></p>
                                     <br/>

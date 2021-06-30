@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.minidev.json.annotate.JsonIgnore;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,16 +15,16 @@ import java.util.List;
 //@Data
 public class Book {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
-    private Long id;
-    private String title;
+    private Integer id;
+    private String tittle;
     private String author;
     private String publisher;
     private String publicationDate;
     private String language;
-    private String category;
     private int numberOfPages;
     private String format;
     private int isbn;
@@ -38,11 +37,34 @@ public class Book {
     private String description;
     private int inStockNumber;
 
-    @Transient
-    private MultipartFile bookImage;
+//    @Transient
+    @Column(length = 45 )
+    private String logo;
+
+//    private MultipartFile bookImage;
+
+//    @Transient
+//    public String getImagePath(){
+//        if (image == null || id == null)
+//            return null;
+//        return "/src/main/resources/static/image/" + id + "/" + image;
+//    }
+
+
 
     @OneToMany(mappedBy = "book")
     @JsonIgnore
     private List<BookToCartItem> bookToCartItemList;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @Transient
+    public String getLogoImagePath(){
+        if (logo == null || id == null)
+            return "/image/logo-default.png";
+        return "/image/" + this.id + "/" + this.logo;
+    }
 
 }

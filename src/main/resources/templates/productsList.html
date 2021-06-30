@@ -72,6 +72,18 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="#"><i class="fa fa-file fa-2x"></i> Categories<span
+                                class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a th:href="@{/categories/categoriesList}"><i class="fa fa-table fa-2x"></i>Categories List</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/categories/new}"><i class="fa fa-edit fa-2x"></i> Add Category </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
 
             </div>
@@ -117,8 +129,8 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                                     <input hidden="hidden" name="id" th:value="${book.id}" />
                                                     <input th:id="'selected'+${book.id}" class="checkboxBook" type="checkbox" />
                                                 </td>
-                                                <td th:text="${book.title}"></td>
-                                                <td th:text="${book.category}"></td>
+                                                <td th:text="${book.tittle}"></td>
+                                                <td th:text="${book.category.name}"></td>
                                                 <td th:text="${book.listPrice}"></td>
                                                 <td th:text="${book.ourPrice}"></td>
                                                 <td th:text="${book.active}"></td>

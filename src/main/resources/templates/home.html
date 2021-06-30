@@ -59,7 +59,7 @@
                         <a><i class="fa fa-table fa-2x"></i>Order History</a>
                     </li>
                     <li >
-                    <a href="#"><i class="fa fa-sitemap fa-2x"></i> Inventory<span
+                        <a href="#"><i class="fa fa-sitemap fa-2x"></i> Inventory<span
                                 class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -67,6 +67,18 @@
                             </li>
                             <li>
                                 <a th:href="@{/product/addProduct}"><i class="fa fa-edit fa-2x"></i> Add Product </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-file fa-2x"></i> Categories<span
+                                class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a th:href="@{/categories/categoriesList}"><i class="fa fa-table fa-2x"></i>Categories List</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/categories/new}"><i class="fa fa-edit fa-2x"></i> Add Category </a>
                             </li>
                         </ul>
                     </li>
