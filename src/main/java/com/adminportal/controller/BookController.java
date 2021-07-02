@@ -69,30 +69,11 @@ public class BookController {
 
         redirectAttributes.addFlashAttribute("message", "The Product has been saved successfully.");
 
-//        System.out.println(fileName.);
-//        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-
-//        String bookImage = book.getImage();
-
-//        try{
-//            byte[] bytes = bookImage.getBytes();
-//            //create path
-//            String name = book.getId() + ".png";
-//            Path path = Paths.get("./src/main/resources/static/image/book/").toAbsolutePath().normalize();
-//            Files.createDirectories(path);
-//            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(path.toString() + name));
-//            stream.write(bytes);
-//            stream.close();
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-
         return "redirect:productsList";
     }
 
     @RequestMapping("/productDetails")
     public String productDetails(@RequestParam("id") Long id, Model model) throws NotFoundException {
-
 
         Optional<Book> book = bookService.findOne(id);
         if(book.isPresent()) {
@@ -103,9 +84,6 @@ public class BookController {
         } else {
             throw new NotFoundException("book not found");
         }
-//        model.addAttribute("book", book.get());
-//
-//        return "productDetails";
     }
 
     @RequestMapping("/updateProduct")

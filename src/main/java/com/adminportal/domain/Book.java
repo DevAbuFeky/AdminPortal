@@ -37,19 +37,8 @@ public class Book {
     private String description;
     private int inStockNumber;
 
-//    @Transient
-    @Column(length = 45 )
+    @Column(length = 255 )
     private String logo;
-
-//    private MultipartFile bookImage;
-
-//    @Transient
-//    public String getImagePath(){
-//        if (image == null || id == null)
-//            return null;
-//        return "/src/main/resources/static/image/" + id + "/" + image;
-//    }
-
 
 
     @OneToMany(mappedBy = "book")
