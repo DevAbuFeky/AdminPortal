@@ -109,7 +109,7 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h3>Basic Form Examples</h3>
+                                        <h3>Add Product</h3>
                                         <form role="form"  style="width: 75%;" th:action="@{/product/addProduct}" method="post" th:object="${book}"
                                               enctype="multipart/form-data">
 
@@ -152,18 +152,6 @@ font-size: 16px;"><a th:href="@{/logout}" class="btn btn-danger square-btn-adjus
                                                 <textarea rows="5" class="form-control" th:field="*{description}"
                                                           placeholder="Description"></textarea>
                                             </div>
-                                            <!-- <div class="form-group">
-                                                <label>Inline Checkboxes Examples</label>
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" /> One
-                                                </label>
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" /> Two
-                                                </label>
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" /> Three
-                                                </label>
-                                            </div> -->
                                             <div class="form-group">
                                                 <label>Status</label>
                                                 <div class="radio">
