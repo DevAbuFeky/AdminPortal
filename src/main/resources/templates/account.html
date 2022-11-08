@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdminPortal</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet" />
+    <!-- MORRIS CHART STYLES-->
+    <link th:href="@{/js/morris/morris-0.4.3.min.css}" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link th:href="@{/css/custom.css}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Admin</a>
+            </div>
+            <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
+                <a th:href="@{/logout}" class="btn btn-danger square-btn-adjust">Logout</a>
+            </div>
+            <div style="float: right"><span class="fa fa-user-circle-o"></span><a th:href="@{/account}"></a></div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <img th:src="@{/img/find_user.png}" class="user-image img-responsive" />
+                    </li>
+
+
+                    <li>
+                        <a th:href="@{/}"><i class="fa fa-dashboard fa-2x"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-bar-chart-o fa-2x"></i>Reports</a>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-table fa-2x"></i>Users</a>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-table fa-2x"></i>Order History</a>
+                    </li>
+                    <li >
+                        <a href="#"><i class="fa fa-sitemap fa-2x"></i> Inventory<span
+                                class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a th:href="@{/product/productsList}"><i class="fa fa-table fa-2x"></i>Products List</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/product/addProduct}"><i class="fa fa-edit fa-2x"></i> Add Product </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-file fa-2x"></i> Categories<span
+                                class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a th:href="@{/categories/categoriesList}"><i class="fa fa-table fa-2x"></i>Categories List</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/categories/new}"><i class="fa fa-edit fa-2x"></i> Add Category </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Update Your info</h2>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <hr />
+
+                <!-- Edit user information -->
+                <div class="tab-pane fade" id="tab-1"
+                     th:classappend="${classActiveEdit}? 'in active'">
+                    <div class="panel-group">
+                        <div class="panel panel-default" style="border: none;">
+                            <div class="panel-body"
+                                 style="background-color: #ededed; margin-top: 20px;">
+
+                                <div class="alert alert-danger" th:if="${incorrectPassword}">
+                                    <strong>Incorrect Password!</strong> Pleae enter the correct
+                                    password for the current user.
+                                </div>
+
+                                <div class="alert alert-succss" th:if="${updateSuccess}">
+                                    <strong>Update Success!</strong>
+                                </div>
+
+                                <form th:action="@{/updateUserInfo}" method="post">
+                                    <input type="hidden" name="id" th:value="${user.id}" />
+
+                                    <div class="bg-info" th:if="${updateUserInfo}">User info
+                                        updated.</div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="firstName">First Name</label> <input
+                                                    type="text" class="form-control" id="firstName"
+                                                    name="firstName" th:value="${user.firstName}" />
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="lastName">Last Name</label> <input type="text"
+                                                                                               class="form-control" id="lastName" name="lastName"
+                                                                                               th:value="${user.lastName}" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="userName">Username</label> ' <input type="text"
+                                                                                        class="form-control" id="userName" name="username"
+                                                                                        th:value="${user.username}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currentPassword">Current Password</label> ' <input
+                                            type="password" class="form-control" id="currentPassword"
+                                            name="password" th:value="${currentPassword}" />
+                                    </div>
+                                    <p style="color: #828282">Enter your current password to
+                                        change the email address or password.</p>
+
+                                    <div class="form-group">
+                                        <label for="email">* Email Address</label> ' <input
+                                            type="text" class="form-control" id="email" name="email"
+                                            th:value="${user.email}" />
+                                    </div>
+                                    <p style="color: #828282">A valid email address. All
+                                        emails from the system withll be sent to this address. The
+                                        email address is not made public and will only be used if you
+                                        wish to receive a new password or wish to receive certain
+                                        notification.</p>
+
+                                    <div class="form-group">
+                                        <label for="txtNewPassword">Password</label>&nbsp;<span
+                                            id="checkPasswordMatch" style="color: red;"></span> <input
+                                            type="password" class="form-control" id="txtNewPassword"
+                                            name="newPassword" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="txtConfirmPassword">Confirm Password</label> ' <input
+                                            type="password" class="form-control" id="txtConfirmPassword" />
+                                    </div>
+                                    <p style="color: #828282">To change the current user
+                                        password, enter the new password in both fields.</p>
+
+                                    <button id="updateUserInfoButton" type="submit"
+                                            class="btn btn-primary">Save All</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End  Hover Rows  -->
+            </div>
+        </div>
+
+    </div>
+    <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+
+
+</body>
+
+</html>

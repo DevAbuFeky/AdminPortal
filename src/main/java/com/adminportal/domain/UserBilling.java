@@ -14,7 +14,7 @@ public class UserBilling {
     private Long id;
     private String userBillingName;
     private String userBillingStreet1;
-    private String userBiliingStreet2;
+    private String userBillingStreet2;
     private String userBillingCity;
     private String userBillingState;
     private String userBillingCountry;
